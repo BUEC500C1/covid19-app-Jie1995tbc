@@ -11,6 +11,28 @@ npm install react-native-maps --save-exact
 
 * Use the [Postman](https://www.postman.com) to add the [Covid-19 API](https://documenter.getpostman.com/view/10808728/SzS8rjbc?version=latest#4b88f773-be9b-484f-b521-bb58dda0315c) in our collection(Use the get method and input param to get the response infomation in Json format)
 
+## Deploy from the Covid-19 api
+For example, update the lastest data of the U.S cases.
+```sh
+fetch('https://api.covid19api.com/total/country/us', requestOptions)
+      .then((res)=>res.json())
+      .then((data)=> {
+        for (let i=0; i<data.length; i++) {
+          if (i===data.length-1) {
+            this.setState({
+            US_Confirmed: data[i]['Confirmed'],
+            US_Deaths:data[i]['Deaths'],
+            US_Recovered:data[i]['Recovered'],
+            US_Active:data[i]['Active']
+            });
+          }
+        }
+      })
+      .catch(error=>{
+        console.error(error)
+      });
+```      
+
 ## Result(.gif)
 
 
